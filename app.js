@@ -1,8 +1,9 @@
 // Create a single supabase client for interacting with your database
 const { createClient } = require('@supabase/supabase-js');
-const supabase = createClient('https://gynfpfexzufkpwgdtxzf.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd5bmZwZmV4enVma3B3Z2R0eHpmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTE0NDgwMDYsImV4cCI6MjAyNzAyNDAwNn0.C8DvNWp8FBJuYX_m_R87VPJkCmUA-6TuJP51rjCZiE0')
+const supabase = createClient('https://gynfpfexzufkpwgdtxzf.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd5bmZwZmV4enVma3B3Z2R0eHpmIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTcxMTQ0ODAwNiwiZXhwIjoyMDI3MDI0MDA2fQ.78C98bwq3Uudzko9sNLlOzDclD89kzoK30b5Qne4UjE')
 const databaseName = 'subscriptions';
 const frontEndUrl = 'http://localhost:5173'
+// const frontEndUrl = 'https://wpl2-groep9.netlify.app'
 
 
 const { Resend } = require('resend');
@@ -101,6 +102,7 @@ async function sendEmail(userEmail, subject, emailContent) {
 
 // NEWSLETTER FORM SUBMIT 
 app.post('/api/new', async (req, res) => {
+  console.log("tetS")
     const userData = req.body;
     const userEmail = userData.email;
 
@@ -114,7 +116,6 @@ app.post('/api/new', async (req, res) => {
     const dataToSend = {
       confirmed: false,
       email: userEmail,
-      name: userData.voornaam + " " + userData.achternaam,
       id: findAvailableId(existingData),
       verification_token: verification_token
     }; 
